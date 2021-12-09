@@ -37,8 +37,8 @@ VALUES(101,774,SYSDATETIME(),100,99.98),(102,775,SYSDATETIME(),32,49.99);
 -- the use of a DML command.
 -- Point out that there are 9 rows returned.
 
-SELECT orderid, custid, orderdate, quantity, amount
-FROM dbo.orders;
+
+
 
 -- Step 5: Querying a table	with expressions
 
@@ -71,7 +71,7 @@ WHERE quantity > 50;
 -- Point out that SYSDATETIME() evaluates to the current date and time.
 -- All rows should be selected.
 
-SELECT orderid, custid, orderdate, quantity, amount
+SELECT orderid, custid, orderdate, quantity, amount, SYSDATETIME() as sysDate
 FROM dbo.orders
 WHERE orderdate < SYSDATETIME();
 
