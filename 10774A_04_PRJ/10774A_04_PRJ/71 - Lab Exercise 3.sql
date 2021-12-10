@@ -17,7 +17,8 @@ GO
 -- Execute the written statement and compare the result that you got with the recommended result shown in the file 72 - Lab Exercise 3 - Task 1 Result.txt.
 ---------------------------------------------------------------------
 
-
+select c.contactname, c.contacttitle
+from sales.Customers c
 
 
 ---------------------------------------------------------------------
@@ -28,7 +29,8 @@ GO
 -- Execute the written statement and compare the results that you got with the desired results shown in the file 73 - Lab Exercise 3 - Task 2 Result.txt. Notice specifically the titles of the columns in the desired output.
 ---------------------------------------------------------------------
 
-
+select c.contactname as 'Name', c.contacttitle as 'Title', c.companyname as 'Company Name'
+from sales.Customers c
 
 
 ---------------------------------------------------------------------
@@ -39,7 +41,8 @@ GO
 -- Execute the written statement and compare the results that you got with the desired results shown in the file 74 - Lab Exercise 3 - Task 3 Result.txt.
 ---------------------------------------------------------------------
 
-
+select p.productname as 'Product Name'
+from Production.Products p
 
 
 ---------------------------------------------------------------------
@@ -55,6 +58,6 @@ GO
 ---------------------------------------------------------------------
 
 SELECT 
-	city country
+	city, country
 FROM Sales.Customers;
 
