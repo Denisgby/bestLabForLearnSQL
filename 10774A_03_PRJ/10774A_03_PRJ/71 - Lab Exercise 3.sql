@@ -15,13 +15,13 @@ GO
 --Observe the results. Why is the result window empty?
 ---------------------------------------------------------------------
 
-/*
+/*because whis is comet*/
 SELECT 
 	firstname, lastname, city, country
 FROM HR.Employees
 WHERE country = 'USA'
 ORDER BY lastname;
-*/
+
 
 
 
