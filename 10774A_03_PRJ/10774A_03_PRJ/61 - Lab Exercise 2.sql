@@ -29,8 +29,12 @@ WHERE country = 'USA';
 --
 -- Observe the result. Notice that the result has fewer rows than the result in exercise 1, task 2.
 ---------------------------------------------------------------------
-
-
+USE TSQL2012;
+GO
+SELECT 
+	firstname, lastname, city, country
+FROM HR.Employees
+WHERE country = 'USA';
 
 
 ---------------------------------------------------------------------
