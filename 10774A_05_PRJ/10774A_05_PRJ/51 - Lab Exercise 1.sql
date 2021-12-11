@@ -21,11 +21,7 @@ GO
 --
 -- Let us say that there is a new row in the Production.Categories table and this new product category does not have any products associated with it in the Production.Products table. Would this row be included in the result of the SELECT statement written in task 1? Please explain.
 ---------------------------------------------------------------------
-select *
-from Production.Categories
 
-select *
-from Production.Products
 
 select p.productname, c.categoryname
 from Production.Products p JOIN Production.Categories c ON p.categoryid=c.categoryid

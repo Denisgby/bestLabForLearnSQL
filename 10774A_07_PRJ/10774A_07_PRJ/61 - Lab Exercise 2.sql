@@ -35,6 +35,8 @@ select CURRENT_TIMESTAMP
 select GETDATE()
 select  cast (DATEADD (DAY, -DAY(current_timestamp)+1, current_timestamp) as date)
 select 	EOMONTH(CURRENT_TIMESTAMP) AS endofmonth;
+select  DATEADD (day, -day(GETDATE())+1, GETDATE() )
+select -day(GETDATE())+1
 ---------------------------------------------------------------------
 -- Task 3
 -- 
@@ -43,12 +45,20 @@ select 	EOMONTH(CURRENT_TIMESTAMP) AS endofmonth;
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 64 - Lab Exercise 2 - Task 3 Result.txt.
 ---------------------------------------------------------------------
 
+select o.orderid, o.custid, o.custid, o.orderdate
+from sales.Orders o
+where day(o.orderdate) between DAY(EOMONTH(o.orderdate))-4 AND DAY(EOMONTH(o.orderdate))
+
+-----------or---------
 SELECT 
 	orderid, custid, orderdate
 FROM Sales.Orders
 WHERE 
-	DATEDIFF( day, orderdate, EOMONTH(orderdate)) < 5;
-
+	DATEDIFF(
+		day,
+		orderdate,
+		EOMONTH(orderdate)  
+	) < 5;
 ---------------------------------------------------------------------
 -- Task 4
 -- 

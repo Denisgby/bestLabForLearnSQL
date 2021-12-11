@@ -37,7 +37,10 @@ INNER JOIN Sales.Orders ON Customers.custid = Orders.custid;
 -- Observe and compare the results that you got with the recommended result shown in the file 62 - Lab Exercise 2 - Task 2 Result.txt. 
 ---------------------------------------------------------------------
 
-
+SELECT 
+	Customers.custid, contactname, orderid
+FROM Sales.Customers  
+INNER JOIN Sales.Orders ON Customers.custid = Orders.custid;
 
 
 ---------------------------------------------------------------------

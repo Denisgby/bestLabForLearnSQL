@@ -42,10 +42,10 @@ select CURRENT_TIMESTAMP as currentdatetime,
 --  
 -- Write December 11, 2011, as a column with a data type of date. Use the different possibilities inside the T-SQL language (cast, convert, specific function, etc.) and use the alias somedate.
 ---------------------------------------------------------------------
-select '2011.31.11',
-       CAST('2011/12/31' as date),
-	   CAST('2011.12.31' as date),
-	   CAST('2011-12-31' as date)
+select '2011.31.11' as string,
+       CAST('2011/12/31' as date) as somedate,
+	   CAST('2011.12.31' as date) as somedate,
+	   CAST('2011-12-31' as date) as somedate
 
 ---------------------------------------------------------------------
 -- Task 3
@@ -101,16 +101,14 @@ INSERT INTO Sales.Somedates (isitdate) VALUES
 	('20110106'),
 	('20110107Y'),
 	('20110108');
-
+	
 SET NOCOUNT OFF;
 
-SELECT isitdate
-FROM Sales.Somedates;
-
-SELECT isitdate, case when ISDATE (isitdate)=1 then CAST (isitdate as date)
-                     
-					  else NULL end
-FROM Sales.Somedates;
+select isitdate, case 
+                 WHEN isdate(isitdate)=1 THEN cast (isitdate as date)
+				 else NULL
+				 end as converteddate
+from Sales.Somedates 
 
 
 
