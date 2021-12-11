@@ -17,7 +17,8 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 72 - Lab Exercise 3 - Task 1 Result.txt. 
 ---------------------------------------------------------------------
-
+select c.contactname+' (city: '+ c.city+')'
+from sales.customers c
 
 ---------------------------------------------------------------------
 -- Task 2
@@ -30,7 +31,8 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 73 - Lab Exercise 3 - Task 2 Result.txt.
 ---------------------------------------------------------------------
-
+select c.contactname+' (city: '+ c.city+', '+'region: '+ISNULL(c.region, '')+' )'
+from sales.customers c
 
 ---------------------------------------------------------------------
 -- Task 3
@@ -39,4 +41,8 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 74 - Lab Exercise 3 - Task 3 Result.txt. Notice the number of rows returned.
 ---------------------------------------------------------------------
+select c.contactname, c.contacttitle
+from Sales.Customers c
+where c.contactname LIKE (N'[a-g]%')
+ORDER BY contactname;
 
