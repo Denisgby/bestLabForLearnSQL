@@ -20,8 +20,13 @@ GO
 --
 -- What is the difference between the ISNULL and COALESCE functions?
 ---------------------------------------------------------------------
-select contactname, coalesce (fax, 'no information') as fax, case fax  when  is null then '1111' else 2222 end
-from Sales.Customers
+select c.contactname, ISNULL(c.fax, 'No information') as faxFixISNull
+from Sales.Customers c 
+
+select c.contactname, COALESCE (c.fax, 'No information')
+from Sales.Customers c
+
+
 
 
 ---------------------------------------------------------------------
@@ -30,12 +35,12 @@ from Sales.Customers
 -- Update the provided T-SQL statement with a WHERE clause to filter the region column using the provided variable @region, which can have a value or a NULL. Test the solution using both provided variable declaration cases.
 ---------------------------------------------------------------------
 
-DECLARE @region AS NVARCHAR(30) = NULL; 
+DECLARE @region AS NVARCHAR(30) = N'WA'; 
 
 SELECT 
 	custid, region
 FROM Sales.Customers
-where region= @region or (region is null and @region is null)
+where region= @region 
 GO
 
 DECLARE @region AS NVARCHAR(30) = N'WA'; 
