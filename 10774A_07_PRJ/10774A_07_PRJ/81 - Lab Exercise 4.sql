@@ -17,7 +17,7 @@ GO
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 82 - Lab Exercise 4 - Task 1 Result.txt. 
 ---------------------------------------------------------------------
 
-select contactname, 
+select contactname
 from sales.Customers
 
 SELECT
