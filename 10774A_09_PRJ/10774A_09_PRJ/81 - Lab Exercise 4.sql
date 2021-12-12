@@ -17,7 +17,11 @@ GO
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 82 - Lab Exercise 4 - Task 1 Result.txt. 
 ---------------------------------------------------------------------
 
-
+select TOP (10) o.custid, sum(od.qty*od.unitprice) as totalsalesamount
+from sales.orders o join sales.OrderDetails od ON o.orderid=od.orderid
+group by o.custid
+having sum(od.qty*od.unitprice)>10000
+order by sum(od.qty*od.unitprice) desc
 
 ---------------------------------------------------------------------
 -- Task 2
@@ -26,7 +30,11 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 83 - Lab Exercise 4 - Task 2 Result.txt. 
 ---------------------------------------------------------------------
-
+select o.orderid, o.empid, sum(od.qty*od.unitprice) as totalsalesamount
+from Sales.Orders o join Sales.OrderDetails od ON o.orderid=od.orderid
+where YEAR(o.orderdate)='2008'
+group by o.orderid, o.empid
+order by o.orderid
 
 
 ---------------------------------------------------------------------
@@ -43,7 +51,13 @@ GO
 -- Did you apply the predicate logic in the WHERE or in the HAVING clause? Which do you think is better? Why?
 ---------------------------------------------------------------------
 
-
+select o.orderid, o.empid, sum(od.qty*od.unitprice) as totalsalesamount
+from Sales.Orders o join Sales.OrderDetails od ON o.orderid=od.orderid
+where YEAR(o.orderdate)='2008'
+group by o.orderid, o.empid
+having sum(od.qty*od.unitprice)>10000
+       AND o.empid=3
+order by o.orderid
 
 ---------------------------------------------------------------------
 -- Task 4
@@ -53,5 +67,9 @@ GO
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 86 - Lab Exercise 4 - Task 4 Result.txt.
 ---------------------------------------------------------------------
 
-
+select o.custid, max(o.orderdate) as lastorderdate, sum(od.qty*od.qty) as totalsalesamount
+       
+from Sales.Orders o join Sales.OrderDetails od ON o.orderid=od.orderid
+group by o.custid
+Having  count(DISTINCT o.orderid)>25
 

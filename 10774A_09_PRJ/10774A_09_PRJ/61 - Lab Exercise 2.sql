@@ -24,8 +24,7 @@ from sales.orders  so join sales.orderdetails sod ON so.orderid=sod.orderid
 group by so.orderid
 order by salesmount desc
 
-select *
-from sales.orderDetails
+
 
 ---------------------------------------------------------------------
 -- Task 2
@@ -49,7 +48,7 @@ order by salesmount desc
 -- Execute the written statement and compare the results that you got with the recommended result shown in the file 64 - Lab Exercise 2 - Task 3 Result.txt.
 ---------------------------------------------------------------------
 
-select year(so.orderdate)*100+ MONTH(so.orderdate) as yearmonth, sum(sod.unitprice*sod.qty)
+select year(so.orderdate)*100+ MONTH(so.orderdate) as yearmonth, sum(sod.unitprice*sod.qty) as saleamountpermonth
 from sales.orders  so join sales.orderdetails sod ON so.orderid=sod.orderid
 group by  year(so.orderdate), MONTH(so.orderdate) 
 order by yearmonth
@@ -71,3 +70,14 @@ order by yearmonth
 -- Notice that the custid 22 and 57 rows have a NULL in the columns with the SUM and MAX aggregate functions. What are their values in the COUNT columns? Why are they different?
 ---------------------------------------------------------------------
 
+SELECT 
+	c.custid, c.contactname, 
+	SUM(d.qty * d.unitprice) AS totalsalesamount,
+	MAX(d.qty * d.unitprice) AS maxsalesamountperorderline, 
+	COUNT(*) AS numberofrows,
+	COUNT(o.orderid) AS numberoforderlines
+FROM Sales.Customers AS c
+LEFT OUTER JOIN Sales.Orders AS o ON o.custid = c.custid
+LEFT OUTER JOIN Sales.OrderDetails AS d ON d.orderid = o.orderid
+GROUP BY c.custid, c.contactname
+ORDER BY totalsalesamount;
