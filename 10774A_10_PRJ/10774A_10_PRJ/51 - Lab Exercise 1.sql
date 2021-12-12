@@ -16,6 +16,9 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the desired results shown in the file 52 - Lab Exercise 1 - Task 1 Result.txt.
 ---------------------------------------------------------------------
+select max(o.orderdate) as lastorderdate
+
+from Sales.Orders o
 
 
 
@@ -26,7 +29,10 @@ GO
 --
 -- Execute the written statement and compare the results that you got with the desired results shown in the file 53 - Lab Exercise 1 - Task 2 Result.txt.
 ---------------------------------------------------------------------
-
+select o.orderid, o.orderdate, o.empid, o.custid
+from Sales.Orders o
+where o.orderdate=(select max(orderdate)
+                   from Sales.orders)
 
 
 ---------------------------------------------------------------------
@@ -49,11 +55,11 @@ SELECT
 	orderid, orderdate, empid, custid
 FROM Sales.Orders
 WHERE 
-	custid = 
+	custid IN
 	(
 		SELECT custid
 		FROM Sales.Customers
-		WHERE contactname LIKE N'I%'
+		WHERE contactname LIKE N'B%'
 	);
 
 
@@ -69,3 +75,13 @@ WHERE
 -- Execute the written statement and compare the results that you got with the desired results shown in the file 55 - Lab Exercise 1 - Task 4 Result.txt. 
 ---------------------------------------------------------------------
 
+select o.orderid
+       , sum(od.qty*od.unitprice) as totalsalesamount
+       , sum(od.qty*od.unitprice)/(select sum (qty*unitprice)
+	                               from Sales.Orders o2 join Sales.OrderDetails od2
+								         ON o2.orderid=od2.orderid
+									where year(o2.orderdate)='2008' AND month(o2.orderdate)='5')*100
+from Sales.Orders o join Sales.OrderDetails od ON o.orderid=od.orderid
+where year(o.orderdate)='2008' AND month(o.orderdate)='5'
+group by o.orderid
+order by o.orderid
